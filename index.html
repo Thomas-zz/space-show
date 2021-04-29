@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    
+</head>
+
+<body>
+    <div id="container">
+        <aside>
+            <ul id="aside-ul">
+                <li @click="switchPage(index)" v-for="(item, index) in pageNo">{{item}}</li>
+
+            </ul>
+        </aside>
+        <div id="wrapper">
+            <div class="page" id="page1">
+                <div class="content">
+                    <div class="boxs">
+                        <div class="box active" style="background: rgba(28, 214, 108,.3); top:-60px"></div>
+                        <div class="box active" style="background: rgba(35, 170, 242,.3); top:0px;left:60px"></div>
+                        <div class="box active" style="background: rgba(255, 214, 97,.3)"></div>
+                        <div class="box" style="background: rgba(250, 50, 96,.3)"></div>
+                    </div>
+                    <p>this is page 1</p>
+                </div>
+            </div>
+            <div class="page" id="page2">
+                <div class="content">
+                    <p>this is page 2</p>
+                </div>
+            </div>
+            <div class="page" id="page3">
+                <div class="content">
+                    <p>this is page 3</p>
+                </div>
+            </div>
+            <div class="page" id="page4">
+                <div class="content">
+                    <p>this is page 4</p>
+                </div>
+            </div>
+            <div class="page" id="page5">
+                <div class="content">
+                    <p>this is page 5</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="js/vue.js"></script>
+    <script type="text/javascript" src="js/pageRoll.js"></script>
+</body>
+
+</html>

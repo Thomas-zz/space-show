@@ -1,0 +1,105 @@
+* {
+    margin : 0;
+    padding: 0
+}
+
+li {
+    list-style: none
+}
+
+img {
+    vertical-align: top;
+    border        : none
+}
+
+aside {
+    position: fixed;
+    margin: auto;
+    top: 40%;
+    right: 5%;
+    z-index: 2;
+}
+
+aside li{
+    height: 4rem;
+    width: 6rem;
+    text-align: center;
+    line-height: 4rem;
+    border: 1px solid;
+}
+
+aside li:hover{
+    cursor: pointer;
+}
+
+#wrapper {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: absolute;
+}
+
+.page {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.active-pre{
+    top: -60px;
+    left: 0;
+}
+
+.active{
+    top: 0px;
+    left: 0;
+}
+
+.active-after{
+    top: 60px;
+    left: 0;
+}
+
+.page .content{
+    width: 200px;
+    height: 60px;
+    text-align: center;
+    /* line-height: 200px; */
+    border: 1px solid black;
+    position: relative;
+}
+
+.content .boxs{
+    position: absolute;
+    transition: 0.5s ease;
+    top: 0;
+}
+
+.box{
+    width: 200px;
+    height: 60px;
+    background: #000;
+}
+
+#page1{
+    background: rgba(134, 95, 197,.3);
+}
+
+#page2{
+    background: rgba(35, 170, 242,.3);
+}
+
+#page3{
+    background: rgba(28, 214, 108,.3);
+}
+
+#page4{
+    background: rgba(255, 214, 97,.3);
+}
+
+#page5{
+    background: rgba(250, 50, 96,.3);
+}
