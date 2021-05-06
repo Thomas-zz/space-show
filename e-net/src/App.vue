@@ -1,13 +1,12 @@
 <template>
   <div id="container">
     <pageAside @switchPage="switchPage"></pageAside>
-    <div id="wrapper">
+    <div id="wrthiser">
       <div class="pages" ref="pages">
         <onePage id="page1"></onePage>
         <onePage id="page2"></onePage>
         <onePage id="page3"></onePage>
         <onePage id="page4"></onePage>
-
       </div>
     </div>
   </div>
@@ -18,22 +17,44 @@ import onePage from './components/onePage'
 import pageAside from './components/aside'
 
 export default {
-  name: 'App',
+  name: 'this',
   data () {
     return {
       // pageNo: [1, 2, 3, 4],
-      // currentPage: 0
+      // this.$children[0].currentPage: 0
     }
+  },
+  mounted () {
+    this.mouseEvent()
   },
   methods: {
     switchPage (pageNo) {
       // oBox[0].style.transition = "0.5s ease";
-      console.log('123')
+      // console.log('123')
       this.$refs.pages.style.top = -pageNo * this.$store.state.pageHeight + 'px'
-      console.log(this.$refs.pages.style.top)
+      // console.log(this.$refs.pages.style.top)
     },
     getpage () {
       console.log('父组件')
+    },
+    mouseEvent (event) {
+      document.addEventListener('mousewheel', (event) => {
+        const pageLength = this.$children[0].pageNo.length
+        console.log()
+        if (event.wheelDelta < 0) {
+          if (this.$children[0].currentPage < pageLength - 1) {
+            this.$refs.pages.style.top = -this.$children[0].currentPage * this.$store.state.pageHeight - this.$store.state.pageHeight + 'px'
+            this.$children[0].currentPage += 1
+            console.log(this.$children[0].currentPage + ' ' + pageLength)
+          }
+        } else if (event.wheelDelta > 0) {
+          if (this.$children[0].currentPage > 0) {
+            this.$refs.pages.style.top = -this.$children[0].currentPage * this.$store.state.pageHeight + this.$store.state.pageHeight + 'px'
+            this.$children[0].currentPage -= 1
+            console.log(this.$children[0].currentPage + ' ' + pageLength)
+          }
+        }
+      })
     }
   },
   components: {
@@ -42,37 +63,18 @@ export default {
   }
 }
 
-// const oPages = document.getElementsByClassName('pages')
-// const pageHeigth = window.innerHeight
-
-// const app = new Vue({
-//   el: '#container',
-//   data: {
-//     pageNo: [1, 2, 3, 4],
-//     currentPage: 0,
-//   },
-//   methods: {
-//     switchPage(pageNo) {
-//       // oBox[0].style.transition = "0.5s ease";
-//       oPages[0].style.top = -pageNo * pageHeigth + 'px'
-//       this.currentPage = pageNo
-//       console.log(this.currentPage + ' ' + this.pageNo.length)
-//     },
-//   },
-// })
-
 // document.addEventListener('mousewheel', (event) => {
 //   if (event.wheelDelta < 0) {
-//     if (app.currentPage < app.pageNo.length - 1) {
-//       oPages[0].style.top = -app.currentPage * pageHeigth - pageHeigth + 'px'
-//       app.currentPage += 1
-//       console.log(app.currentPage + ' ' + app.pageNo.length)
+//     if (this.$children[0].currentPage < pageLength - 1) {
+//       this.$refs.pages.style.top = -this.$children[0].currentPage * this.$store.state.pageHeight - this.$store.state.pageHeight + 'px'
+//       this.$children[0].currentPage += 1
+//       console.log(this.$children[0].currentPage + ' ' + pageLength)
 //     }
 //   } else if (event.wheelDelta > 0) {
-//     if (app.currentPage > 0) {
-//       oPages[0].style.top = -app.currentPage * pageHeigth + pageHeigth + 'px'
-//       app.currentPage -= 1
-//       console.log(app.currentPage + ' ' + app.pageNo.length)
+//     if (this.$children[0].currentPage > 0) {
+//       this.$refs.pages.style.top = -this.$children[0].currentPage * this.$store.state.pageHeight + this.$store.state.pageHeight + 'px'
+//       this.$children[0].currentPage -= 1
+//       console.log(this.$children[0].currentPage + ' ' + pageLength)
 //     }
 //   }
 // })
@@ -93,7 +95,7 @@ img {
   border: none;
 }
 
-#wrapper {
+#wrthiser {
   width: 100vw;
   height: 100vh;
   overflow: hidden;

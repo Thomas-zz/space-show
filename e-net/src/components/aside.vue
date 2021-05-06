@@ -21,7 +21,7 @@ export default {
     switchPage (pageNo) {
       this.$emit('switchPage', pageNo)
       this.currentPage = pageNo
-      console.log(pageNo)
+      // console.log(pageNo)
     }
   }
 }

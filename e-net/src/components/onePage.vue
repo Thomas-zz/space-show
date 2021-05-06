@@ -1,13 +1,6 @@
 <template>
   <div class="page" id="page1">
-    <div class="content">
-      <div class="boxs">
-        <div class="box" style="background: rgba(28, 214, 108,.3); top:-60px"></div>
-        <div class="box" style="background: rgba(35, 170, 242,.3); top:0px;left:60px"></div>
-        <div class="box" style="background: rgba(255, 214, 97,.3)"></div>
-        <div class="box" style="background: rgba(250, 50, 96,.3)"></div>
-      </div>
-    </div>
+
   </div>
 </template>
 
