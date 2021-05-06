@@ -3,7 +3,7 @@
     <pageAside @switchPage="switchPage"></pageAside>
     <div id="wrthiser">
       <div class="pages" ref="pages">
-        <onePage id="page1"></onePage>
+        <homePage class="page"></homePage>
         <onePage id="page2"></onePage>
         <onePage id="page3"></onePage>
         <onePage id="page4"></onePage>
@@ -15,6 +15,7 @@
 <script>
 import onePage from './components/onePage'
 import pageAside from './components/aside'
+import homePage from './views/HomePage'
 
 export default {
   name: 'this',
@@ -59,25 +60,11 @@ export default {
   },
   components: {
     onePage: onePage,
-    pageAside: pageAside
+    pageAside: pageAside,
+    homePage: homePage
   }
 }
 
-// document.addEventListener('mousewheel', (event) => {
-//   if (event.wheelDelta < 0) {
-//     if (this.$children[0].currentPage < pageLength - 1) {
-//       this.$refs.pages.style.top = -this.$children[0].currentPage * this.$store.state.pageHeight - this.$store.state.pageHeight + 'px'
-//       this.$children[0].currentPage += 1
-//       console.log(this.$children[0].currentPage + ' ' + pageLength)
-//     }
-//   } else if (event.wheelDelta > 0) {
-//     if (this.$children[0].currentPage > 0) {
-//       this.$refs.pages.style.top = -this.$children[0].currentPage * this.$store.state.pageHeight + this.$store.state.pageHeight + 'px'
-//       this.$children[0].currentPage -= 1
-//       console.log(this.$children[0].currentPage + ' ' + pageLength)
-//     }
-//   }
-// })
 </script>
 
 <style lang="scss">
@@ -106,6 +93,13 @@ img {
   position: absolute;
   top: 0;
   transition: 0.5s ease;
+  .page {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 #page1 {
