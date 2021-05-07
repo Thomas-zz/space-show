@@ -13,10 +13,11 @@
           <p>{{ item }}</p>
         </li>
       </ul>
-      <img :src="imgurl" class="starsImg" ref="starsImg">
+      <img :src="imgurl" class="starsImg" ref="starsImg" />
     </div>
-    <img src="~assets/星空.png" class="bgImg" ref="bgImg1">
-    <img src="~assets/星空.png" class="bgImg2" ref="bgImg2">
+    <div id="moon"></div>
+    <img src="~assets/星空.png" class="bgImg" ref="bgImg1" />
+    <img src="~assets/星空.png" class="bgImg2" ref="bgImg2" />
     <video class="earth-video" src="~assets/earth.mp4" autoplay loop muted></video>
   </div>
 </template>
@@ -164,26 +165,37 @@ export default {
       transition: 0.2s linear;
     }
   }
+  #moon {
+    position: absolute;
+    left: 2rem;
+    top: 2rem;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-size: 210px;
+    box-shadow: inset 15px 0 30px 6px rgb(0, 0, 0), inset -3px 0 6px 2px rgba(255, 255, 255, 0.2);
+    z-index: 1;
+  }
   .bgImg {
     position: absolute;
     width: 120%;
-    top: 0;
+    top: -2rem;
     left: -20px;
     z-index: 1;
-    opacity: 0.3;
+    opacity: 0.2;
     // transition: 0.5s linear;
   }
   .bgImg2 {
     position: absolute;
     width: 120%;
-    top: 0;
+    top: -2rem;
     left: -20px;
     z-index: 0;
     opacity: 0.6;
-    transform: rotate(180deg)
+    transform: rotate(180deg);
     // transition: 0.5s linear;
   }
-  .earth-video{
+  .earth-video {
     z-index: 0;
     width: 65%;
     position: absolute;
