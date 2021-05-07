@@ -7,7 +7,14 @@
       </video>
     </div>
     <div class="overlay">
-        <div class="title">中 国 航 天</div>
+        <div class="corner-marker">
+            <p class="cnsa">C N S A</p>
+            <p>中国航天</p>
+        </div>
+        <div class="title">
+            <p>一个有希望的民族</p>
+            <p>需要一群仰望星空的人</p>
+        </div>
     </div>
   </div>
 </template>
@@ -23,6 +30,7 @@ export default {
 <style lang="scss" scoped>
 .homePage{
     background: rgba(0,0,0,0.25);
+    position: relative
 }
 
 #banner-video{
@@ -48,14 +56,26 @@ export default {
 
 .overlay{
     position: absolute;
-    left: 10%;
+    height: 45vh;
+    top: 14%;
+    left: 6%;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .corner-marker{
+        .cnsa{
+            text-indent: 3px;
+        }
+        font-family: Helvetica;
+        font-size: 1.2rem;
+        color: rgba(227, 227, 227);
+    }
     .title{
         font-family: Helvetica;
-        font-size: 6rem;
+        font-size: 4.2rem;
         font-weight: 600;
+        direction: rtl;
         color: rgba(227, 227, 227);
-        
     }
 }
 </style>

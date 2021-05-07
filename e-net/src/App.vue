@@ -4,7 +4,7 @@
     <div id="wrthiser">
       <div class="pages" ref="pages">
         <homePage class="page"></homePage>
-        <onePage id="page2"></onePage>
+        <starsPage class="page"></starsPage>
         <onePage id="page3"></onePage>
         <onePage id="page4"></onePage>
       </div>
@@ -16,6 +16,8 @@
 import onePage from './components/onePage'
 import pageAside from './components/aside'
 import homePage from './views/HomePage'
+import starsPage from './views/starsPage'
+import './common/font/font.css'
 
 export default {
   name: 'this',
@@ -61,7 +63,8 @@ export default {
   components: {
     onePage: onePage,
     pageAside: pageAside,
-    homePage: homePage
+    homePage: homePage,
+    starsPage: starsPage
   }
 }
 
@@ -100,14 +103,6 @@ img {
     justify-content: center;
     align-items: center;
   }
-}
-
-#page1 {
-  background: rgba(134, 94, 197, 0.3);
-}
-
-#page2 {
-  background: rgba(35, 170, 242, 0.3);
 }
 
 #page3 {

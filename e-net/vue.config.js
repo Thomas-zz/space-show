@@ -10,6 +10,7 @@ module.exports = {
             }
         }
     },
+
     // lintOnSave:false,
     // devServer:{
     //     host: '10.60.0.140',  // ipv4

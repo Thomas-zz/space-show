@@ -1,0 +1,20 @@
+@font-face{
+    font-family: 'SerifHeavy';
+    src: url('SerifGothic-Heavy.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: 'ariblack';
+    src: url('ariblk.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: 'MAOTI';
+    src: url('毛泽东字体.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
