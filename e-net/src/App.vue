@@ -5,18 +5,19 @@
       <div class="pages" ref="pages">
         <homePage class="page"></homePage>
         <starsPage class="page"></starsPage>
-        <onePage id="page3"></onePage>
-        <onePage id="page4"></onePage>
+        <humanPage class="page"></humanPage>
+        <journeyPage class="page"></journeyPage>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import onePage from './components/onePage'
 import pageAside from './components/aside'
 import homePage from './views/HomePage'
 import starsPage from './views/starsPage'
+import humanPage from './views/human'
+import journeyPage from './views/JourneyPage'
 import './common/font/font.css'
 
 export default {
@@ -61,10 +62,11 @@ export default {
     }
   },
   components: {
-    onePage: onePage,
     pageAside: pageAside,
     homePage: homePage,
-    starsPage: starsPage
+    starsPage: starsPage,
+    humanPage,
+    journeyPage
   }
 }
 
