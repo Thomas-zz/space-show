@@ -7,14 +7,17 @@
       </video>
     </div>
     <div class="overlay">
-        <div class="corner-marker">
-            <p class="cnsa">C N S A</p>
-            <p>中国航天</p>
+      <div class="corner-marker">
+        <img class="logo" src="~assets/CNSA.png" />
+        <div class="text">
+          <p class="cnsa">C N S A</p>
+          <p>中国航天</p>
         </div>
-        <div class="title">
-            <p>一个有希望的民族</p>
-            <p>需要一群仰望星空的人</p>
-        </div>
+      </div>
+      <div class="title">
+        <p>一个有希望的民族</p>
+        <p>需要一群仰望星空的人</p>
+      </div>
     </div>
   </div>
 </template>
@@ -28,12 +31,12 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.homePage{
-    background: rgba(0,0,0,0.25);
-    position: relative
+.homePage {
+  background: rgba(0, 0, 0, 0.25);
+  position: relative;
 }
 
-#banner-video{
+#banner-video {
   position: relative;
   width: 100%;
   height: 100vh;
@@ -45,37 +48,46 @@ export default {
     height: 100%;
     object-fit: fill;
     min-height: 661px;
-  //   width: auto;
+    //   width: auto;
     /*加滤镜*/
     /*filter: blur(15px); //背景模糊设置 */
     /*-webkit-filter: grayscale(100%);*/
     /*filter:grayscale(100%); //背景灰度设置*/
-    z-index:-1;
+    z-index: -1;
   }
 }
 
-.overlay{
-    position: absolute;
-    height: 45vh;
-    top: 14%;
-    left: 6%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    .corner-marker{
-        .cnsa{
-            text-indent: 3px;
-        }
-        font-family: Helvetica;
-        font-size: 1.2rem;
-        color: rgba(227, 227, 227);
+.overlay {
+  position: absolute;
+  height: 45vh;
+  top: 14%;
+  left: 6%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .corner-marker {
+    .logo {
+      display: inline-block;
+      width: 2.5rem;
+      padding-right: 1rem;
+      padding-top: 0.2rem;
     }
-    .title{
-        font-family: Helvetica;
-        font-size: 4.2rem;
-        font-weight: 600;
-        direction: rtl;
-        color: rgba(227, 227, 227);
+    .text{
+      display: inline-block;
+      .cnsa {
+        text-indent: 3px;
+      }
     }
+    font-family: Helvetica;
+    font-size: 1.2rem;
+    color: rgba(227, 227, 227);
+  }
+  .title {
+    font-family: Helvetica;
+    font-size: 4.2rem;
+    font-weight: 600;
+    direction: rtl;
+    color: rgba(227, 227, 227);
+  }
 }
 </style>
