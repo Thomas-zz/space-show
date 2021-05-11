@@ -4,6 +4,7 @@
     <div class="left-list">
       <ul class="starsli">
         <li
+          ref="starsLi"
           @mousemove="mouseMove()"
           @mouseenter="mouseEnter(index)"
           @mouseleave="mouseLeave()"
@@ -55,7 +56,15 @@ export default {
     }
   },
   methods: {
+    pageIn () {
+      for (let i = 0; i < this.starsList.length; i++) {
+        setTimeout(() => {
+          this.$refs.starsLi[i].style.transform = 'translateX(0)'
+        }, 200 * i)
+      }
+    },
     mouseEnter (index) {
+      console.log(this.$refs.pages)
       this.current = index
       this.lock = true
       // console.log('当前列：' + this.current)
@@ -137,6 +146,9 @@ export default {
         font-family: Arial, Helvetica, sans-serif;
         font-weight: 600;
         z-index: 2;
+        // 页面进入时li从左边出来
+        transition: 1s ease;
+        transform: translateX(-120%);
         p {
           transition: 1s ease;
         }
@@ -152,7 +164,7 @@ export default {
           position: absolute;
           bottom: 0;
           left: -5%;
-          height: 2px;
+          height: 3px;
           width: 45vw;
           background: linear-gradient(to left, rgb(15, 15, 15), rgb(38, 38, 38));
         }

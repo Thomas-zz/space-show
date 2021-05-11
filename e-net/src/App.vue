@@ -4,7 +4,7 @@
     <div id="wrthiser">
       <div class="pages" ref="pages">
         <homePage class="page"></homePage>
-        <starsPage class="page"></starsPage>
+        <starsPage class="page" ref="starsPage"></starsPage>
         <humanPage class="page"></humanPage>
         <journeyPage class="page"></journeyPage>
       </div>
@@ -36,10 +36,11 @@ export default {
       // oBox[0].style.transition = "0.5s ease";
       // console.log('123')
       this.$refs.pages.style.top = -pageNo * this.$store.state.pageHeight + 'px'
+      console.log(this.$refs.pages.style.top + ' : ' + -this.$store.state.pageHeight)
+      if (this.$refs.pages.style.top === -this.$store.state.pageHeight + 'px') {
+        this.$refs.starsPage.pageIn()
+      }
       // console.log(this.$refs.pages.style.top)
-    },
-    getpage () {
-      console.log('父组件')
     },
     mouseEvent (event) {
       document.addEventListener('mousewheel', (event) => {
@@ -69,7 +70,6 @@ export default {
     journeyPage
   }
 }
-
 </script>
 
 <style lang="scss">
@@ -106,5 +106,4 @@ img {
     align-items: center;
   }
 }
-
 </style>
