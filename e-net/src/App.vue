@@ -107,15 +107,4 @@ img {
   }
 }
 
-#page3 {
-  background: rgba(28, 214, 108, 0.3);
-}
-
-#page4 {
-  background: rgba(255, 214, 97, 0.3);
-}
-
-#page5 {
-  background: rgba(250, 50, 96, 0.3);
-}
 </style>
