@@ -19,11 +19,14 @@ import starsPage from './views/starsPage'
 import humanPage from './views/human'
 import journeyPage from './views/JourneyPage'
 import './common/font/font.css'
+// import { setTimeout } from 'timers';
 
 export default {
   name: 'this',
   data () {
     return {
+      // 节流锁
+      lock: true
       // pageNo: [1, 2, 3, 4],
       // this.$children[0].currentPage: 0
     }
@@ -33,33 +36,50 @@ export default {
   },
   methods: {
     switchPage (pageNo) {
-      // oBox[0].style.transition = "0.5s ease";
-      // console.log('123')
+      if (!this.lock) return
       this.$refs.pages.style.top = -pageNo * this.$store.state.pageHeight + 'px'
-      console.log(this.$refs.pages.style.top + ' : ' + -this.$store.state.pageHeight)
+      // 当切到第二个页面时，执行加载动画
       if (this.$refs.pages.style.top === -this.$store.state.pageHeight + 'px') {
         this.$refs.starsPage.pageIn()
       }
+      this.lock = false
+      this.unlocking()
       // console.log(this.$refs.pages.style.top)
     },
     mouseEvent (event) {
       document.addEventListener('mousewheel', (event) => {
+        if (!this.lock) return
         const pageLength = this.$children[0].pageNo.length
-        console.log()
         if (event.wheelDelta < 0) {
           if (this.$children[0].currentPage < pageLength - 1) {
             this.$refs.pages.style.top = -this.$children[0].currentPage * this.$store.state.pageHeight - this.$store.state.pageHeight + 'px'
             this.$children[0].currentPage += 1
+            if (this.$refs.pages.style.top === -this.$store.state.pageHeight + 'px') {
+              this.$refs.starsPage.pageIn()
+            }
+            this.lock = false
+            this.unlocking()
             console.log(this.$children[0].currentPage + ' ' + pageLength)
           }
         } else if (event.wheelDelta > 0) {
           if (this.$children[0].currentPage > 0) {
             this.$refs.pages.style.top = -this.$children[0].currentPage * this.$store.state.pageHeight + this.$store.state.pageHeight + 'px'
             this.$children[0].currentPage -= 1
+            if (this.$refs.pages.style.top === -this.$store.state.pageHeight + 'px') {
+              this.$refs.starsPage.pageIn()
+            }
+            this.lock = false
+            this.unlocking()
             console.log(this.$children[0].currentPage + ' ' + pageLength)
           }
         }
       })
+    },
+    unlocking () {
+      const that = this
+      setTimeout(function () {
+        that.lock = true
+      }, 1400)
     }
   },
   components: {

@@ -36,7 +36,7 @@ aside {
   top: 50%;
   transform: translateY(-50%);
   right: 5%;
-  z-index: 2;
+  z-index: 3;
 
   li {
     height: 6rem;

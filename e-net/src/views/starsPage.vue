@@ -1,13 +1,14 @@
 <!--“星辰”页面-->
 <template>
-  <div class="stars-page">
+  <div class="stars-page" @mousemove="mouseMove()">
     <div class="left-list">
+      <div class="left-arrow" ref="LeftArrow" @click="toLeft()"></div>
       <ul class="starsli">
         <li
           ref="starsLi"
-          @mousemove="mouseMove()"
           @mouseenter="mouseEnter(index)"
           @mouseleave="mouseLeave()"
+          @click="clickLi(index)"
           v-for="(item, index) in starsList"
           v-bind:key="item"
         >
@@ -16,14 +17,17 @@
       </ul>
       <img :src="imgurl" class="starsImg" ref="starsImg" />
     </div>
+    <StarsShow class="right-list" ref="StarsShow"></StarsShow>
     <div id="moon"></div>
     <img src="~assets/星空.png" class="bgImg" ref="bgImg1" />
     <img src="~assets/星空.png" class="bgImg2" ref="bgImg2" />
-    <video class="earth-video" src="~assets/earth.mp4" autoplay loop muted></video>
+    <video ref="earth" class="earth-video" src="~assets/earth.mp4" autoplay loop muted></video>
   </div>
 </template>
 
 <script>
+import StarsShow from '../components/starsShow'
+
 export default {
   name: 'starsPage',
   data () {
@@ -50,6 +54,8 @@ export default {
       lock: true,
       // 定时器
       timeout: null,
+      // 设置鼠标离开li的时候要不要清除图片url
+      ifUrl: true,
       // 鼠标位置
       mouseX: 0,
       mouseY: 0
@@ -63,18 +69,61 @@ export default {
         }, 200 * i)
       }
     },
+    clickLi (index) {
+      // this.mouseEnter(this.current)
+      // 不清除图片url
+      this.ifUrl = false
+      const that = this
+      // 退场动画
+      for (let i = 0; i < this.starsList.length; i++) {
+        setTimeout(() => {
+          this.$refs.starsLi[i].style.transform = 'translateX(-120%)'
+        }, 100 * i)
+      }
+      setTimeout(() => {
+        this.earthMove(true)
+        // 箭头淡入
+        that.$refs.LeftArrow.style.opacity = 1
+      }, 400)
+      // 设置starsShow的值
+      this.$refs.StarsShow.setValue(index)
+      setTimeout(function () {
+        that.$refs.StarsShow.enterAnimation()
+      }, 1200)
+    },
+    toLeft () {
+      this.ifUrl = true
+      const that = this
+      // 箭头淡出
+      that.$refs.LeftArrow.style.opacity = 0
+      that.$refs.StarsShow.enterAnimation()
+      setTimeout(() => {
+        this.earthMove(false)
+      }, 800)
+      for (let i = 0; i < this.starsList.length; i++) {
+        setTimeout(() => {
+          this.$refs.starsLi[i].style.transform = 'translateX(0)'
+        }, 1100 + 100 * i)
+      }
+    },
+    earthMove (val) {
+      if (val) {
+        this.$refs.earth.style.right = 40 + '%'
+      } else {
+        this.$refs.earth.style.right = 0
+      }
+    },
     mouseEnter (index) {
-      console.log(this.$refs.pages)
       this.current = index
       this.lock = true
       // console.log('当前列：' + this.current)
       this.imgurl = this.imgList[index].imgurl
     },
     mouseLeave () {
-      this.current = null
-      this.imgurl = ''
-      // this.$refs.bgImg.style.top = 0 + 'px'
-      // this.$refs.bgImg.style.left = -20 + 'px'
+      if (this.ifUrl) {
+        this.current = null
+        this.imgurl = ''
+      }
     },
     mouseMove () {
       if (!this.lock) return
@@ -115,9 +164,11 @@ export default {
       // 200毫秒后打开
       this.timeout = setTimeout(function () {
         that.lock = true
-        console.log('dddd')
       }, 50)
     }
+  },
+  components: {
+    StarsShow
   }
 }
 </script>
@@ -133,6 +184,21 @@ export default {
     transform: translateY(-50%);
     left: 0;
     z-index: 2;
+    .left-arrow{
+      width: 2rem;
+      height: 2rem;
+      border-top: 5px solid rgb(154, 154, 154);
+      border-left: 5px solid rgb(154, 154, 154);
+      border-radius: 2px;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      left: 15%;
+      opacity: 0;
+      transform: translateY(-50%) rotate(-45deg);
+      transition: 2s ease;
+      z-index: 2;
+    }
     .starsli {
       li {
         height: 6.5rem;
@@ -147,7 +213,7 @@ export default {
         font-weight: 600;
         z-index: 2;
         // 页面进入时li从左边出来
-        transition: 1s ease;
+        transition: 0.8s ease;
         transform: translateX(-120%);
         p {
           transition: 1s ease;
@@ -172,10 +238,19 @@ export default {
     }
     .starsImg {
       position: absolute;
-      width: 17rem;
+      width: 23rem;
       opacity: 0.5;
-      transition: 0.2s linear;
+      transition: 0.1s linear;
     }
+  }
+  .right-list {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    z-index: 2;
   }
   #moon {
     position: absolute;
@@ -212,6 +287,7 @@ export default {
     width: 65%;
     position: absolute;
     right: 2%;
+    transition: 0.8s ease;
   }
 }
 </style>
