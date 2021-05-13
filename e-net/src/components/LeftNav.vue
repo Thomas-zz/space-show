@@ -310,6 +310,38 @@ export default {
         this.currentIndex = index
         this.$bus.$emit('changeCurrentIndex', this.lists[this.currentIndex - 23])
       }
+    },
+    moveNav (index) {
+      console.log(index)
+      this.ScrectIndex = -1
+      if (index >= 46) {
+        this.currentIndex = index
+        this.ScrectIndex = index - 23
+        this.$refs.box.style = `transform:translateY(-${
+          (index - this.position) * this.permove + 'px'
+        });transition-duration: 500ms; pointer-events: none;`
+        setTimeout(() => {
+          this.$refs.box.style = `transform:translateY(${
+            '-' + (this.ScrectIndex - this.position) * this.permove + 'px'
+          });`
+        }, 500)
+      } else if (index <= 22) {
+        this.currentIndex = index
+        this.ScrectIndex = index + 23
+        this.$refs.box.style = `transform:translateY(-${
+          (index - this.position) * this.permove + 'px'
+        });transition-duration: 500ms; pointer-events: none;`
+        setTimeout(() => {
+          this.$refs.box.style = `transform:translateY(${
+            '-' + (this.ScrectIndex - this.position) * this.permove + 'px'
+          });`
+        }, 500)
+      } else {
+        this.$refs.box.style = `transform:translateY(-${
+          (index - this.position) * this.permove + 'px'
+        });transition-duration: 500ms;`
+        this.currentIndex = index
+      }
     }
   },
   mounted () {
@@ -318,6 +350,9 @@ export default {
     this.$refs.box.style = `transform:translateY(${
       '-' + (this.currentIndex - this.position) * this.permove + 'px'
     })`
+    this.$bus.$on('changeTargetIndex', (index) => {
+      this.moveNav(index)
+    })
   },
   components: {
     List

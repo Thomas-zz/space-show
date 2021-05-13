@@ -8,11 +8,15 @@
         :key="index"
         :Info="info"
         :index="index"
+        :style="{
+          transitionDuration: leftIndex === index||currentIndex === index||rightIndex === index ? animationTime : false
+        }"
         :class="{
           left: leftIndex === index,
           middle: currentIndex === index,
           right: rightIndex === index,
         }"
+        @click.native="changeTargetIndex(index)"
       ></show-info>
     </div>
   </div>
@@ -117,7 +121,7 @@ export default {
           url: require('assets/img/figures/陈芳允.png'),
           name: '陈芳允',
           context:
-            '1964年和李力田等研制出飞机用抗干扰雷达，投产后大量装备我国歼击机。1964年至1965年，提出方案并和徐建平等研制出原子弹爆炸测试仪器，参加了卫星测控系统的建设工作，为我国人造卫星上天作出了贡献。1970年他提出并和共同工作者于1980年完成了微波统一测控系统，成为支持我国通信卫星上天的主要设备，获1985年国家科技进步特等奖，国防科技进步一等奖。'
+            '1964年和李力田等研制出飞机用抗干扰雷达，投产后大量装备我国歼击机。1964年至1965年，提出方案并和徐建平等研制出原子弹爆炸测试仪器，参加了卫星测控系统的建设工作，为我国人造卫星上天作出了贡献。1970年他提出并和共同工作者于1980年完成了微波统一测控系统，成为支持我国通信卫星上天的主要设备，获1985年国家科技进步特等奖。'
         },
         {
           url: require('assets/img/figures/吴自良.png'),
@@ -129,7 +133,7 @@ export default {
           url: require('assets/img/figures/任新民.png'),
           name: '任新民',
           context:
-            '相继领导组织了中程、中远程、远程液体弹道式地地导弹的多种液体火箭发动机的研制、试验工作。组织研制长征一号运载火箭，保证发射第一颗人造地球卫星东方红一号获得成功。领导组织了氢氧发动机、长征三号运载火箭和整个通信卫星工程的研制试验；领导组织了用长征三号运载火箭把亚洲一号通信卫星准确地送入地球同步转移轨道，实现了中国运载火箭国际发射服务零的突破。'
+            '相继领导组织了中程、中远程、远程液体弹道式地地导弹的多种液体火箭发动机的研制、试验工作。组织研制长征一号运载火箭，保证发射第一颗人造地球卫星东方红一号获得成功。领导组织了氢氧发动机、长征三号运载火箭和整个通信卫星工程的研制试验。'
         },
         {
           url: require('assets/img/figures/孙家栋.png'),
@@ -153,7 +157,7 @@ export default {
           url: require('assets/img/figures/王大珩.png'),
           name: '王大珩',
           context:
-            '在光学与光学工程研究和组织领导工作中作出了杰出贡献，领导研制了我国第一台靶场装备大型精密光学跟踪电影经纬仪、我国第一台激光红外电视电影经纬仪和船体变形测量系统，为发展我国的尖端武器作出了杰出贡献。他是中国光学、仪器仪表和计量科教事业的奠基人之一。他领导的研究所以及他创办的院校，为国家培养了一大批科技英才。'
+            '在光学与光学工程研究和组织领导工作中作出了杰出贡献，领导研制了我国第一台靶场装备大型精密光学跟踪电影经纬仪、我国第一台激光红外电视电影经纬仪和船体变形测量系统，为发展我国的尖端武器作出了杰出贡献。他是中国光学、仪器仪表和计量科教事业的奠基人之一。'
         },
         {
           url: require('assets/img/figures/于敏.png'),
@@ -167,7 +171,10 @@ export default {
           context:
             '长期从事航空工程研究，发现了上临界马赫数，发展了奇异摄动理论中的变形坐标法，即国际上公认的PLK方法，倡导了中国高速空气动力学、电磁流体力学和爆炸力学等新兴学科的研究。担负国防科学研究的业务领导工作，为发展中国核弹与导弹等事业作出了重要贡献。'
         }
-      ]
+      ],
+      i: 0,
+      number: 0,
+      animationTime: '250ms'
     }
   },
   components: {
@@ -178,10 +185,48 @@ export default {
       this.currentIndex = pos
       this.leftIndex = this.currentIndex - 1 < 0 ? this.Infos.length - 1 : this.currentIndex - 1
       this.rightIndex = this.currentIndex + 1 > this.Infos.length - 1 ? 0 : this.currentIndex + 1
+    },
+    upCircle () {
+      this.i = this.currentIndex + 1 > this.Infos.length - 1 ? 0 : this.currentIndex + 1
+      this.changePage(this.i)
+      if (this.number === this.i) {
+        return
+      }
+      this.i++
+      setTimeout(this.upCircle, 250)
+    },
+    downCircle () {
+      this.i = this.currentIndex - 1 < 0 ? this.Infos.length - 1 : this.currentIndex - 1
+      this.changePage(this.i)
+      if (this.number === this.i) {
+        return
+      }
+      this.i--
+      setTimeout(this.downCircle, 250)
+    },
+    changeTargetIndex (index) {
+      const preIndex = this.currentIndex
+      this.changePage(index)
+      if (index > preIndex && index === this.Infos.length - 1 && preIndex === 0) {
+        index = preIndex + this.Infos.length - 1
+      } else if (index < preIndex && index === 0 && preIndex === this.Infos.length - 1) {
+        index = preIndex + this.Infos.length + 1
+      } else if (index > preIndex) {
+        index = preIndex + this.Infos.length + 1
+      } else if (index < preIndex) {
+        index = preIndex + this.Infos.length - 1
+      } else {
+        return
+      }
+      // 利用事件总线发射事件
+      this.$bus.$emit('changeTargetIndex', index)
     }
   },
   mounted () {
     this.$bus.$on('changeCurrentIndex', (param) => {
+      if (param.no - 1 === this.currentIndex) {
+        return
+      }
       const number = param.no - 1
       // const distant = this.Infos.length - number - this.currentIndex
       let flag = 0
@@ -191,33 +236,12 @@ export default {
       } else {
         flag = number - this.currentIndex <= -Math.ceil(this.Infos.length / 2)
       }
-      console.log(flag)
+      this.number = number
+      this.i = i
       if (flag) {
-        i = this.currentIndex + 1 > this.Infos.length - 1 ? 0 : this.currentIndex + 1
-
-        const timer = setInterval(() => {
-          this.changePage(i)
-
-          if (number === i) {
-            i = 0
-            clearInterval(timer)
-            return
-          }
-          i++
-        }, 500)
+        setTimeout(this.upCircle, 250)
       } else {
-        i = this.currentIndex - 1 < 0 ? this.Infos.length - 1 : this.currentIndex - 1
-        const timer = setInterval(() => {
-          this.changePage(i)
-
-          if (number === i) {
-            i = 0
-            clearInterval(timer)
-            return
-          }
-          console.log(i)
-          i--
-        }, 500)
+        setTimeout(this.downCircle, 250)
       }
     })
   }
@@ -242,17 +266,17 @@ export default {
 .left {
   transform: translateX(-110%) scale(0.8);
   opacity: 1;
-  transition: all 1s;
+  transition-property: all;
 }
 .middle {
   transform: translateX(0) scale(1.2);
-  transition: all 1s;
+  transition-property: all;
   opacity: 1;
   z-index: 2;
 }
 .right {
   transform: translateX(110%) scale(0.8);
   opacity: 1;
-  transition: all 1s;
+  transition-property: all;
 }
 </style>

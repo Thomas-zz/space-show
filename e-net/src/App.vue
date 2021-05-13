@@ -26,9 +26,9 @@ export default {
   data () {
     return {
       // 节流锁
-      lock: true
-      // pageNo: [1, 2, 3, 4],
-      // this.$children[0].currentPage: 0
+      lock: true,
+      // 是否是第一次进入‘星辰页面’
+      firstInto: true
     }
   },
   mounted () {
@@ -38,9 +38,10 @@ export default {
     switchPage (pageNo) {
       if (!this.lock) return
       this.$refs.pages.style.top = -pageNo * this.$store.state.pageHeight + 'px'
-      // 当切到第二个页面时，执行加载动画
-      if (this.$refs.pages.style.top === -this.$store.state.pageHeight + 'px') {
+      // 当第一次切到第二个页面时，执行加载动画
+      if (this.firstInto === true && this.$refs.pages.style.top === -this.$store.state.pageHeight + 'px') {
         this.$refs.starsPage.pageIn()
+        this.firstInto = false
       }
       this.lock = false
       this.unlocking()
@@ -54,8 +55,10 @@ export default {
           if (this.$children[0].currentPage < pageLength - 1) {
             this.$refs.pages.style.top = -this.$children[0].currentPage * this.$store.state.pageHeight - this.$store.state.pageHeight + 'px'
             this.$children[0].currentPage += 1
-            if (this.$refs.pages.style.top === -this.$store.state.pageHeight + 'px') {
+            // 当第一次切到第二个页面时，执行加载动画
+            if (this.firstInto === true && this.$refs.pages.style.top === -this.$store.state.pageHeight + 'px') {
               this.$refs.starsPage.pageIn()
+              this.firstInto = false
             }
             this.lock = false
             this.unlocking()
@@ -65,8 +68,10 @@ export default {
           if (this.$children[0].currentPage > 0) {
             this.$refs.pages.style.top = -this.$children[0].currentPage * this.$store.state.pageHeight + this.$store.state.pageHeight + 'px'
             this.$children[0].currentPage -= 1
-            if (this.$refs.pages.style.top === -this.$store.state.pageHeight + 'px') {
+            // 当第一次切到第二个页面时，执行加载动画
+            if (this.firstInto === true && this.$refs.pages.style.top === -this.$store.state.pageHeight + 'px') {
               this.$refs.starsPage.pageIn()
+              this.firstInto = false
             }
             this.lock = false
             this.unlocking()
@@ -79,7 +84,7 @@ export default {
       const that = this
       setTimeout(function () {
         that.lock = true
-      }, 1400)
+      }, 1000)
     }
   },
   components: {

@@ -6,26 +6,30 @@
         <!-- <source src="~assets/videoplayback.mp4" type="video/mp4" /> -->
       </video>
     </div>
-    <div class="overlay">
-      <div class="corner-marker">
+    <!-- <div class="overlay">
+      <div class="corner-marker"> -->
         <!-- <img class="logo" src="~assets/CNSA.png" /> -->
-        <div class="text">
+        <!-- <div class="text">
           <p class="cnsa">C N S A</p>
           <p>中国航天</p>
         </div>
       </div>
       <div class="title">
-        <p>我们的目标是星辰大海</p>
       </div>
-    </div>
+    </div> -->
+     <time-axis class="time-axis"></time-axis>
   </div>
 </template>
 
 <script>
+import TimeAxis from '../components/TimeAxis/TimeAxis.vue'
 export default {
   name: '',
   data () {
     return {}
+  },
+  components: {
+    TimeAxis
   }
 }
 </script>
@@ -88,5 +92,13 @@ export default {
   font-weight: 600;
   direction: rtl;
   color: #e3e3e3;
+}
+.time-axis {
+  position: absolute;
+  width: 70%;
+  height: 100%;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
 }
 </style>
