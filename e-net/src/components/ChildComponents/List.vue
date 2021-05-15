@@ -27,6 +27,10 @@ export default {
   height: 50px;
   padding-bottom: 10px;
 }
+.list:hover {
+  color: rgb(254, 254, 254);
+  cursor: pointer;
+}
 .left {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 700;

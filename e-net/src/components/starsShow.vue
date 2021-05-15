@@ -123,7 +123,7 @@ export default {
   top: 38%;
   right: 18rem;
   width: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: SerifHeavy, Helvetica, sans-serif;
   transition: width 0.8s;
   color: rgb(254, 254, 254);
   .up-wrapper {

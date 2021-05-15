@@ -67,7 +67,7 @@ export default {
           url: require('assets/img/figures/王淦昌.png'),
           name: '王淦昌',
           context:
-            '核武器研制的主要科学技术领导人之一，核武器研究实验工作的开拓者。在从事核武器研制期间，指导并参加了中国原子弹、氢弹研制工作。他是原子弹冷试验技术委员会主任委员，指导了中国第一次地下核试验，领导并具体组织了中国第二、三次地下核试验。主持指导的爆轰物理试验、抗核加固技术和激光模拟核爆炸试验等方面都取得重要成果。'
+            '核武器研制的主要科学技术领导人之一，核武器研究实验工作的开拓者。在从事核武器研制期间，指导并参加了中国原子弹、氢弹研制工作。他是原子弹冷试验技术委员会主任委员，指导了中国第一次地下核试验，领导并具体组织了中国第二、三次地下核试验。主持指导抗核加固技术和激光模拟核爆炸试验等方面都取得重要成果。'
         },
         {
           url: require('assets/img/figures/彭桓武.png'),
@@ -85,7 +85,7 @@ export default {
           url: require('assets/img/figures/黄纬禄.png'),
           name: '黄纬禄',
           context:
-            '长期从事火箭与导弹控制技术理论与工程实践研究工作，开创了我国固体战略导弹的先河，突破了我国水下发射技术和固体发动机研制技术，探索出了一条我国固体火箭与导弹发展的正确道路。他突出体现了忠诚报国、献身航天的坚定信念，攻坚克难、勇攀高峰的创新精神，团结协作、集思广益的优良作风，为提高自主创新能力提供强大精神动力。'
+            '长期从事火箭与导弹控制技术理论与工程实践研究工作，开创了我国固体战略导弹的先河。他突出体现了忠诚报国、献身航天的坚定信念，攻坚克难、勇攀高峰的创新精神，团结协作、集思广益的优良作风，为提高自主创新能力提供强大精神动力。'
         },
         {
           url: require('assets/img/figures/屠守锷.png'),
@@ -121,7 +121,7 @@ export default {
           url: require('assets/img/figures/陈芳允.png'),
           name: '陈芳允',
           context:
-            '1964年和李力田等研制出飞机用抗干扰雷达，投产后大量装备我国歼击机。1964年至1965年，提出方案并和徐建平等研制出原子弹爆炸测试仪器，参加了卫星测控系统的建设工作，为我国人造卫星上天作出了贡献。1970年他提出并和共同工作者于1980年完成了微波统一测控系统，成为支持我国通信卫星上天的主要设备，获1985年国家科技进步特等奖。'
+            '1964年和李力田等研制出飞机用抗干扰雷达，投产后大量装备我国歼击机。1964年至1965年，提出方案并和徐建平等研制出原子弹爆炸测试仪器，参加了卫星测控系统的建设工作，为我国人造卫星上天作出了贡献。1970年他提出并和共同工作者于1980年完成了微波统一测控系统，成为支持我国通信卫星上天的主要设备。'
         },
         {
           url: require('assets/img/figures/吴自良.png'),
@@ -266,17 +266,29 @@ export default {
 .left {
   transform: translateX(-110%) scale(0.8);
   opacity: 1;
+  transition-timing-function: linear;
   transition-property: all;
+}
+.left:hover{
+  transform: translateX(-110%) scale(0.9)
 }
 .middle {
   transform: translateX(0) scale(1.2);
   transition-property: all;
+  transition-timing-function: linear;
   opacity: 1;
   z-index: 2;
+}
+.middle:hover{
+  transform: scale(1.3)
 }
 .right {
   transform: translateX(110%) scale(0.8);
   opacity: 1;
+  transition-timing-function: linear;
   transition-property: all;
+}
+.right:hover{
+  transform: translateX(110%) scale(0.9)
 }
 </style>

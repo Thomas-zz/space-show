@@ -95,8 +95,8 @@ export default {
 }
 .time-axis {
   position: absolute;
-  width: 70%;
-  height: 100%;
+  width: 67rem;
+  height: 47.1rem;
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);

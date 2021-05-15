@@ -379,9 +379,9 @@ export default {
 .leftposition::before{
     position: absolute;
     content: '';
-    width: 50%;
+    width: 40%;
     height: 10%;
-    background: linear-gradient(to bottom, rgba(1, 1, 1, 0.85), rgba(1, 1, 1, 0.1));
+    background: linear-gradient(to bottom, rgba(30, 41, 65, 0.85), rgba(26, 36, 58, 0.1));
     z-index: 1;
 }
 .leftposition::after{
@@ -390,7 +390,7 @@ export default {
     content: '';
     width: 39%;
     height: 10%;
-    background: linear-gradient(to top, rgba(5, 3, 3, 0.85), rgba(4, 3, 2, 0.1));
+    background: linear-gradient(to top, rgba(13, 16, 26, 0.85), rgba(12, 18, 29, 0.1));
     z-index: 1;
 }
 .content {
