@@ -50,7 +50,7 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  /* height: 100%; */
+  height: 100%;
   object-fit: fill;
   min-height: 661px;
   /*加滤镜*/

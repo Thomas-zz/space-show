@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    pageHeight: window.innerHeight
+    // pageHeight: window.innerHeight
   },
   mutations: {
   },

@@ -33,13 +33,17 @@ export default {
   },
   mounted () {
     this.mouseEvent()
+    window.onresize = () => {
+      console.log('页面高度变了')
+      this.$refs.pages.style.top = -this.$children[0].currentPage * window.innerHeight + 'px'
+    }
   },
   methods: {
     switchPage (pageNo) {
       if (!this.lock) return
-      this.$refs.pages.style.top = -pageNo * this.$store.state.pageHeight + 'px'
+      this.$refs.pages.style.top = -pageNo * window.innerHeight + 'px'
       // 当第一次切到第二个页面时，执行加载动画
-      if (this.firstInto === true && this.$refs.pages.style.top === -this.$store.state.pageHeight + 'px') {
+      if (this.firstInto === true && this.$refs.pages.style.top === -window.innerHeight + 'px') {
         this.$refs.starsPage.pageIn()
         this.firstInto = false
       }
@@ -53,10 +57,10 @@ export default {
         const pageLength = this.$children[0].pageNo.length
         if (event.wheelDelta < 0) {
           if (this.$children[0].currentPage < pageLength - 1) {
-            this.$refs.pages.style.top = -this.$children[0].currentPage * this.$store.state.pageHeight - this.$store.state.pageHeight + 'px'
+            this.$refs.pages.style.top = -this.$children[0].currentPage * window.innerHeight - window.innerHeight + 'px'
             this.$children[0].currentPage += 1
             // 当第一次切到第二个页面时，执行加载动画
-            if (this.firstInto === true && this.$refs.pages.style.top === -this.$store.state.pageHeight + 'px') {
+            if (this.firstInto === true && this.$refs.pages.style.top === -window.innerHeight + 'px') {
               this.$refs.starsPage.pageIn()
               this.firstInto = false
             }
@@ -66,10 +70,10 @@ export default {
           }
         } else if (event.wheelDelta > 0) {
           if (this.$children[0].currentPage > 0) {
-            this.$refs.pages.style.top = -this.$children[0].currentPage * this.$store.state.pageHeight + this.$store.state.pageHeight + 'px'
+            this.$refs.pages.style.top = -this.$children[0].currentPage * window.innerHeight + window.innerHeight + 'px'
             this.$children[0].currentPage -= 1
             // 当第一次切到第二个页面时，执行加载动画
-            if (this.firstInto === true && this.$refs.pages.style.top === -this.$store.state.pageHeight + 'px') {
+            if (this.firstInto === true && this.$refs.pages.style.top === -window.innerHeight + 'px') {
               this.$refs.starsPage.pageIn()
               this.firstInto = false
             }

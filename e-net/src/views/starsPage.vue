@@ -200,9 +200,10 @@ export default {
       z-index: 2;
     }
     .starsli {
+      width: 35rem;
       li {
         height: 6.5rem;
-        width: 40vw;
+        // width: 40vw;
         position: relative;
         text-align: right;
         line-height: 6.5rem;
@@ -216,12 +217,12 @@ export default {
         transition: 0.8s ease;
         transform: translateX(-120%);
         p {
-          transition: 1s ease;
+          transition: 0.8s ease;
         }
         &:hover {
-          color: rgb(254, 254, 254);
           cursor: pointer;
           p {
+            color: rgb(254, 254, 254);
             transform: translate(3rem);
           }
         }
@@ -230,9 +231,11 @@ export default {
           position: absolute;
           bottom: 0;
           left: -5%;
-          height: 3px;
-          width: 45vw;
-          background: linear-gradient(to left, rgb(15, 15, 15), rgb(38, 38, 38));
+          height: 1px;
+          // width: 45vw;
+          width: 43rem;
+          // background: linear-gradient(to left, rgba(15, 15, 15, 1), rgba(38, 38, 38, 0.3));
+          background: linear-gradient(to right, #464646 0%, #464646 60%, rgba(70, 70, 70, 0) 100%);
         }
       }
     }
