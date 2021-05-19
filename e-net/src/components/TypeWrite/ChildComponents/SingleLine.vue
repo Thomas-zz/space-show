@@ -58,7 +58,6 @@ export default {
     align-content: flex-start;
     width: 33.6rem;
     height:11.63rem;
-    transition: 1s all ease;
 }
 /* .text::after{
     content: "|";
@@ -86,7 +85,7 @@ export default {
     font-family: monospace;
     width: 0;
     overflow: hidden;
-    animation: 300ms move linear forwards;
+    animation: 300ms move ease forwards;
     text-align: center;
 }
 @keyframes move {
