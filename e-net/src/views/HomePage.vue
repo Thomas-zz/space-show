@@ -14,19 +14,21 @@
           <p>中国航天</p>
         </div>
       </div>
-      <div class="title">
-        <p>一个有希望的民族</p>
-        <p>需要一群仰望星空的人</p>
-      </div>
+      <type-write></type-write>
     </div>
   </div>
 </template>
 
 <script>
+import TypeWrite from 'components/TypeWrite/TypeWrite.vue'
 export default {
   name: 'HomePage',
   data () {
-    return {}
+    return {
+    }
+  },
+  components: {
+    TypeWrite
   }
 }
 </script>
