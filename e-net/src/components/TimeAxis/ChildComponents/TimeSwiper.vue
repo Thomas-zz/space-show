@@ -293,7 +293,7 @@ export default {
 }
 
 .leftArrow{
-    background: url("~assets/arrow.png");
+    background: url("~assets/rightArrow.png");
     position: absolute;
     width:200px;
     height: 200px;
@@ -301,7 +301,7 @@ export default {
     left: -4rem;
 }
 .rightArrow{
-    background: url("~assets/arrow.png");
+    background: url("~assets/rightArrow.png");
     position: absolute;
     width:200px;
     height: 200px;
