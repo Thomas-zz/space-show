@@ -37,6 +37,7 @@ export default {
   color: white;
   border-radius: 10px;
   opacity: 0;
+  overflow: hidden;
 }
 .image {
   display: flex;

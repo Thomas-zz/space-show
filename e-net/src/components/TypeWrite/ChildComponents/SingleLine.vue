@@ -32,7 +32,7 @@ export default {
     let startTime = 0
     for (let i = 0; i < len; i++) {
       // 当下标值等于预设值时，延长动画等待时长
-      if (i === this.specialSpan || i === 2 || i === 10) {
+      if (i === this.specialSpan || i === 2 || i === 12) {
         startTime = this.delayTime + 500 + startTime
       } else {
         startTime += this.delayTime - 100
@@ -82,7 +82,6 @@ export default {
 } */
 .text span{
     display: inline-block;
-    font-family: monospace;
     width: 0;
     overflow: hidden;
     animation: 300ms move ease forwards;

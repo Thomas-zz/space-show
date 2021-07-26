@@ -161,7 +161,7 @@ export default {
 
       // 关锁
       this.lock = false
-      // 200毫秒后打开
+      // 50毫秒后打开
       this.timeout = setTimeout(function () {
         that.lock = true
       }, 50)

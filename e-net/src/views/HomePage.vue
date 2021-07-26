@@ -87,7 +87,7 @@ export default {
   .title {
     font-family: Helvetica;
     font-size: 4.2rem;
-    font-weight: 600;
+    font-weight: 700;
     direction: rtl;
     color: rgba(227, 227, 227);
   }

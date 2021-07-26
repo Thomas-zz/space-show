@@ -1,20 +1,22 @@
 <!--  -->
+import { log } from 'util';
 <template>
   <div>
     <div class="time-swiper">
-      <div class='ShowImage'>
+      <div ref="ShowImg" class='ShowImage'>
         <div ref= 'child1' class="image"></div>
         <div ref= 'child2' class="image"></div>
       </div>
-      <div class="Textshow">
+      <div ref="Bg" class="bg"></div>
+      <div ref='TextShow' class="Textshow">
          <div>  <span class="leftText" v-for="(item, index) in TitleArray" :key="index"><i :class = "{i:true, move: isTrue}" :style = "{transitionDelay:index * 100 + 'ms' }">{{item}}</i></span></div>
          <div :class="{RightText:true,}"><span :class = "{ span: true,timeMove: isTrue}">{{historys[currentIndex].time}}</span></div>
       </div>
-      <div  class="ContentShow">
+      <div ref='Content' class="ContentShow">
           <span :class = "{content:true,contentMove:isTrue}">{{historys[currentIndex].content}}</span>
       </div>
-      <div class="leftArrow" @click = "moveLeft"></div>
-      <div class="rightArrow" @click = "moveRight"></div>
+      <!-- <div class="leftArrow" @click = "moveLeft"></div>
+      <div class="rightArrow" @click = "moveRight"></div> -->
   </div>
   </div>
 </template>
@@ -35,7 +37,7 @@ export default {
         {
           title: '东方红一号',
           time: '1970/4/24',
-          content: '1970年4月24日 中国第一颗人造卫星“东方红一号”成功发射',
+          content: '中国第一颗人造卫星“东方红一号”成功发射',
           url: require('assets/img/history/1东方红一号.jpg')
         },
         {
@@ -71,7 +73,7 @@ export default {
         {
           title: '嫦娥三号',
           time: '2013/12/02',
-          content: '”亚洲一号”卫星成功发射，中国航天正式迈入世界商业航天市场',
+          content: '亚洲一号”卫星成功发射，中国航天正式迈入世界商业航天市场',
           url: require('assets/img/history/7嫦娥三号.jpg')
         },
         {
@@ -109,6 +111,7 @@ export default {
   },
   methods: {
     moveRight () {
+      console.log('++++++' + this.currentIndex)
       this.isTrue = false
       this.RightCount += 1
       this.lastIndex = this.currentIndex
@@ -142,6 +145,7 @@ export default {
       }, 700)
     },
     moveLeft () {
+      console.log('------' + this.currentIndex)
       this.isTrue = false
       this.LeftCount += 1
       this.lastIndex = this.currentIndex
@@ -183,6 +187,14 @@ export default {
 
     this.TitleArray = this.historys[this.currentIndex].title.split('')
     console.log(this.TitleArray)
+    this.$bus.$on('changeImage', (index) => {
+      console.log(index)
+      if (this.currentIndex < index) {
+        this.moveRight()
+      } else if (this.currentIndex > index) {
+        this.moveLeft()
+      }
+    })
   }
 }
 </script>
@@ -204,7 +216,10 @@ export default {
     max-height: 500px;
     overflow: hidden;
     border-radius: 7px;
-    border:10px solid rgba(242, 242, 243);
+    border:0px solid rgba(242, 242, 243);
+    transition: .8s linear;
+    transform: translate3d(0,0,90) rotateX(0) rotateY(0);
+    z-index: 1;
 }
 .image{
   position: absolute;
@@ -251,11 +266,33 @@ export default {
 }
 .Textshow{
     position: absolute;
-    top:7%;
-    left:16%;
+    bottom: 20%;
+    right: 5%;
     color:white;
     display: flex;
     flex-direction: column;
+    transform: translate3d(0,0,0) rotateX(0) rotateY(0);
+    transition: 0.6s linear;
+    z-index: 2;
+    backdrop-filter: blur(12px);
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.bg{
+    position: absolute;
+    width: 70%;
+    height: 60%;
+    top: 10%;
+    left: 5%;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    transform: translate3d(0,0,0) rotateX(0) rotateY(0);
+    transition: 0.9s linear;
+    border-radius: 7px;
+    z-index: 0;
+    backdrop-filter: blur(12px);
+    background-color: rgba(255, 255, 255, 0.08);
 }
 .leftText{
     display: inline-block;
@@ -275,7 +312,6 @@ export default {
 }
 
 .RightText{
-
     overflow: hidden;
 }
 .span{
@@ -298,7 +334,7 @@ export default {
     width:200px;
     height: 200px;
     transform: rotateY(180deg) scale(0.5);
-    left: -4rem;
+    left: -20rem;
 }
 .rightArrow{
     background: url("~assets/rightArrow.png");
@@ -306,14 +342,17 @@ export default {
     width:200px;
     height: 200px;
     transform: scale(0.5);
-    right: -4rem;
+    right: -10rem;
 }
 .ContentShow{
     position: absolute;
-    bottom:11%;
-    right: 10%;
+    bottom:12%;
+    right: 5%;
     color: white;
     overflow: hidden;
+    transform: translate3d(0,0,50) rotateX(0) rotateY(0);
+    transition: 0.6s linear;
+    z-index: 2;
 }
 .content{
    position: relative;
